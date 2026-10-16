@@ -1,143 +1,80 @@
+/* Extra feature 1: CSS variables */
+:root {
+  --green: #2f5d3a;
+  --cream: #f7f1e3;
+  --accent: #d98a2b;
+  --text: #2a2a22;
+  --radius: 10px;
+}
+
+* { box-sizing: border-box; }
 body {
-    background-color: #dedede;
+  margin: 0;
+  font-family: Georgia, "Times New Roman", serif;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--cream);
 }
+main { max-width: 72rem; margin: 0 auto; padding: 1.5rem 1.25rem; }
 
-h1 {
-    text-align: center;
-    font-family:Arial, sans-serif;
-    font-size: 32px;
+/* Extra feature 2: sticky header */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  padding: 0.75rem 1.25rem;
+  background: var(--green);
+  color: var(--cream);
 }
+.site-header h1 { margin: 0; font-size: clamp(1.4rem, 4vw, 2.2rem); }
 
-a {
-    color: #000;
-    text-decoration: none;
-    font-family:Arial, sans-serif;
+/* Extra feature 3: pseudo-element underline on headings */
+.intro h2 { display: inline-block; margin-top: 0; }
+.intro h2::after {
+  content: "";
+  display: block;
+  width: 50%;
+  height: 4px;
+  margin-top: 0.2rem;
+  background: var(--accent);
+  transition: width 0.4s ease;
 }
+.intro h2:hover::after { width: 100%; }
+.intro p { max-width: 45rem; }
 
-p {
-   font-size: 25px;
-   font-family:Arial, sans-serif;
+/* Responsive grid: 1 column on phone, 2 on tablet, 3 on desktop */
+.gallery {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
 }
-
-img{
-  width:100%;
+figure {
+  margin: 0;
+  overflow: hidden;
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
 }
+figure img { display: block; width: 100%; height: auto; }
+figcaption { padding: 0.75rem 1rem; font-size: 0.95rem; }
 
+/* Extra feature 4: transform + transition on hover */
+figure img { transition: transform 0.4s ease; }
+figure:hover img { transform: scale(1.08) rotate(-1deg); }
 
-p{
-  text-align:center;
+.top-link { margin: 2rem 0 0; text-align: center; }
+.top-link a { color: var(--green); font-weight: bold; }
+.top-link a:hover, .top-link a:focus { color: var(--accent); }
+
+.site-footer { padding: 1rem; text-align: center; background: var(--green); color: var(--cream); }
+.site-footer p { margin: 0; }
+
+@media (min-width: 600px) {
+  .gallery { grid-template-columns: repeat(2, 1fr); }
 }
-
-div img{
-    width:150px;
-    height: 150px;
-    display:block;
-    margin:auto;
+@media (min-width: 992px) {
+  .gallery { grid-template-columns: repeat(3, 1fr); }
 }
-
-div{
-  display: inline-block;
-  width: 24%;
-  margin: 5px;
-  padding: 2px;
+@media (prefers-reduced-motion: reduce) {
+  figure img, .intro h2::after { transition: none; }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* 
-main {
-    border: 5px #000 solid;
-    margin: 10px;
-}
- */
-/* 
-
-.container {
-    display: grid;
-    grid-template-columns: 1fr;
-    justify-items: center;
-}
- */
-/* img{
-    width: 200px;
-    height: 200px;
-    padding: 5px;
-} */
-
-/* .child {
-    position: relative;
-    display: inline-block;
-    border: 5px black solid;
-    margin: 5px;
-    border-radius: 5px;
-} */
-
-/* 
-
-.label {
-    display: none;
-    position: absolute;
-    top: 40%;
-    left: 40%;
-} */
-/* 
-.button {
-    display: inline-block;
-    border: 2px solid #000;
-    padding: 5px;
-    border-radius: 25px;
-}
- */
-/* 
-.button:hover {
-    background-color:#fff;
-} */
-
-/* 
-footer {
-    display: flex;
-    justify-content: center;
-} */
-
-/* 
-header {
-    border-radius: 5px;
-    border: 5px #000 solid;
-    margin: 10px;
-} */
-
-/* 
-.label {
-    display: none;
-    position: absolute;
-    top: 40%;
-    left: 40%;
-} */
-/* 
-.child:hover .label {
-    display: block;
-} */
